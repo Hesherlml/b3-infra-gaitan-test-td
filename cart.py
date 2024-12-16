@@ -25,3 +25,13 @@ class Cart:
             return "Your cart is empty."
         return "\n".join([f"{product.name} x {quantity} - {product.price * quantity}€"
                           for product, quantity in self.items.items()])
+    
+
+    def apply_discount_code(self, code: str):
+        discount_codes = {"SAVE10": 10, "SAVE20": 20}  # Exemple : 10% ou 20% de réduction
+        if code not in discount_codes:
+            raise ValueError(f"Invalid discount code: {code}.")
+        discount = discount_codes[code]
+        total = self.calculate_total()
+        return total * (1 - discount / 100)
+
