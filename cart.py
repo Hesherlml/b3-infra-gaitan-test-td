@@ -25,3 +25,13 @@ class Cart:
             return "Your cart is empty."
         return "\n".join([f"{product.name} x {quantity} - {product.price * quantity}€"
                           for product, quantity in self.items.items()])
+
+    def remise_produit(self):
+        if quantity > 10 and quantity <= 15:
+            total_remise = sum (product.price * quantity for product, quantity in self.items.items())*0.10
+            total_avec_remise = sum (product.price * quantity for product, quantity in self.items.items()) - remise
+            return "Votre remise est de '10%' et votre total est de " + total_avec_remise
+        else if quantity > 15:
+            total_remise = sum (product.price * quantity for product, quantity in self.items.items())*0.20
+            total_avec_remise = sum (product.price * quantity for product, quantity in self.items.items()) - remise
+            return "Votre remise est de '20%' et votre total est de " + total_avec_remise
