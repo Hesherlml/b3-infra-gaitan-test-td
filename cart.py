@@ -27,11 +27,24 @@ class Cart:
                           for product, quantity in self.items.items()])
 
     def remise_produit(self):
-        if quantity > 10 and quantity <= 15:
-            total_remise = sum (product.price * quantity for product, quantity in self.items.items())*0.10
-            total_avec_remise = sum (product.price * quantity for product, quantity in self.items.items()) - remise
-            return "Votre remise est de '10%' et votre total est de " + total_avec_remise
-        else if quantity > 15:
-            total_remise = sum (product.price * quantity for product, quantity in self.items.items())*0.20
-            total_avec_remise = sum (product.price * quantity for product, quantity in self.items.items()) - remise
-            return "Votre remise est de '20%' et votre total est de " + total_avec_remise
+        total_sans_remise = sum(product.price * quantity for product, quantity in self.items.items())
+
+        total_quantite = sum(quantity for product, quantity in self.items.items())
+
+        if 10 < total_quantite <= 15:
+            
+            total_remise = total_sans_remise * 0.10
+            
+            total_avec_remise = total_sans_remise - total_remise
+            
+            return f"Votre remise est de '10%' et votre total est de {total_avec_remise}"
+        elif total_quantite > 15:
+        
+            total_remise = total_sans_remise * 0.20
+        
+            total_avec_remise = total_sans_remise - total_remise
+        
+            return f"Votre remise est de '20%' et votre total est de {total_avec_remise}"
+        else:
+            # Sans remise
+            return f"Vous n'avez pas de remise et votre total est de {total_sans_remise}"
