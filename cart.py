@@ -25,7 +25,9 @@ class Cart:
             return "Your cart is empty."
         return "\n".join([f"{product.name} x {quantity} - {product.price * quantity}€"
                           for product, quantity in self.items.items()])
-    
+        
+        
+    ######################################### fonction ajouter ####################################################
     def notify_low_stock(self):
         # """Avertir l'utilisateur si un produit dans le panier a un stock faible."""
         low_stock_products = [] # stocké le nome des produit qui ont un stock faible
@@ -36,3 +38,6 @@ class Cart:
         if low_stock_products:
             return "Avertissement : stock faible:\n" + "\n".join(low_stock_products)
         return "Tous les produits ont un stock suffisant"
+    
+if __name__ == "__main__":
+    Cart()
